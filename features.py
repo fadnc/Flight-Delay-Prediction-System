@@ -1,5 +1,3 @@
-# features.py
-
 import pandas as pd
 import pickle
 from sklearn.model_selection import train_test_split
@@ -16,7 +14,7 @@ def load_and_clean_data():
 def create_and_save_artifacts(df):
     """Calculates and serializes encoding mappings and training stats."""
     
-    # 1. Target Encoding Mappings
+    #Target Encoding mappings
     carrier_mapping = df.groupby('carrier_name')[TARGET].mean().to_dict()
     airport_mapping = df.groupby('airport_name')[TARGET].mean().to_dict()
 
@@ -27,7 +25,7 @@ def create_and_save_artifacts(df):
         
     print(f"Encoders saved to {CARRIER_ENCODER_PATH} and {AIRPORT_ENCODER_PATH}")
 
-    # 2. Training Statistics (for MLOps Drift Detection)
+    # Training statistics
     training_stats = {
         'arr_flights_mean': df['arr_flights'].mean(),
         'arr_flights_std': df['arr_flights'].std()
@@ -49,8 +47,9 @@ def prepare_training_data(df, carrier_mapping, airport_mapping):
     X = df[FEATURES]
     y = df[TARGET]
     
-    # Perform the split
+    # Perform  split
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=TEST_SIZE, random_state=42
     )
+
     return X_train, X_test, y_train, y_test
