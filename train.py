@@ -1,20 +1,22 @@
 # train.py
 
-from features import load_and_clean_data, create_and_save_encoders, prepare_training_data
+from features import load_and_clean_data, create_and_save_artifacts, prepare_training_data
 from model import train_model, evaluate_model
 
 if __name__ == '__main__':
-    # 1. Load and clean data
+    print("--- 1. Data Loading and Cleaning ---")
     df = load_and_clean_data()
+    print(f"Cleaned Data Shape: {df.shape}")
     
-    # 2. Create and save encoding artifacts
-    carrier_map, airport_map = create_and_save_encoders(df)
+    print("\n--- 2. Creating & Saving Artifacts (Encoders, Stats) ---")
+    carrier_map, airport_map = create_and_save_artifacts(df)
     
-    # 3. Prepare training and testing splits
+    print("\n--- 3. Preparing Data Splits ---")
     X_train, X_test, y_train, y_test = prepare_training_data(df, carrier_map, airport_map)
-    
-    # 4. Train model and save the artifact
+    print(f"Train/Test Split: {X_train.shape[0]} training samples, {X_test.shape[0]} testing samples.")
+
+    # 4. Train and Optimize Model
     trained_model = train_model(X_train, y_train)
     
-    # 5. Evaluate
+    # 5. Evaluate and Visualize
     evaluate_model(trained_model, X_test, y_test)

@@ -1,4 +1,3 @@
-# Predictive-Flight-Delay-Model
 # ✈️ Flight Delay Prediction System
 
 ## 🌟 Project Overview
