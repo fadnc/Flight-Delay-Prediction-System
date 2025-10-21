@@ -1,5 +1,3 @@
-# model.py
-
 import joblib
 import os
 import pandas as pd
@@ -12,10 +10,10 @@ from config import MODEL_PATH, MODEL_PARAMS, RANDOM_GRID, N_ITER_SEARCH, CV_SPLI
 def train_model(X_train, y_train):
     """Initializes, optimizes, and trains the Random Forest Regressor."""
     
-    # 1. Base Model Initialization
+    # Base Model Initialization
     base_model = RandomForestRegressor(**MODEL_PARAMS)
 
-    # 2. Time-Series Cross-Validation Setup (for time-aware splitting)
+    #  Time-Series Cross-Validation Setup 
     tscv = TimeSeriesSplit(n_splits=CV_SPLITS)
     print(f"Using Time-Series Cross-Validation (n_splits={CV_SPLITS}) for robust tuning.")
 
@@ -35,7 +33,7 @@ def train_model(X_train, y_train):
     rf_random.fit(X_train, y_train)
     print("Optimization Complete.")
 
-    # 4. Save the Optimized Model
+    # Save the Optimized Model
     optimized_model = rf_random.best_estimator_
     print(f"Best Parameters Found: {rf_random.best_params_}")
     
@@ -78,7 +76,8 @@ def evaluate_model(model, X_test, y_test):
     print(f"Mean Absolute Error (MAE): {mae:.4f}")
     print(f"R-squared Score (R2): {r2:.4f}")
 
-    # Call the visualization function
+    # Call visualization function
     visualize_feature_importance(model, X_test.columns) 
     
+
     return mae, r2
