@@ -1,5 +1,3 @@
-# predict.py
-
 import joblib
 import pickle
 import pandas as pd
@@ -14,7 +12,7 @@ from config import (
     DRIFT_THRESHOLD
 )
 
-# Global variables to cache loaded artifacts (improves API response time)
+# Global variables to cache loaded artifacts
 MODEL_CACHE = None
 CARRIER_MAP_CACHE = None
 AIRPORT_MAP_CACHE = None
@@ -63,7 +61,7 @@ def preprocess_input(year, month, carrier_name, airport_name, arr_flights):
     # Load artifacts if not already in cache
     load_artifacts()
 
-    # 1. Target Encoding Lookup (with fallback for unseen categories)
+    # 1. Target Encoding Lookup
     carrier_encoded = CARRIER_MAP_CACHE.get(carrier_name, GLOBAL_MEAN_DELAY)
     airport_encoded = AIRPORT_MAP_CACHE.get(airport_name, GLOBAL_MEAN_DELAY)
 
@@ -88,7 +86,7 @@ def get_prediction(year, month, carrier_name, airport_name, arr_flights):
     return prediction
 
 if __name__ == '__main__':
-    # Example 1: Normal Prediction
+    # Eg 1, Normal Prediction
     load_artifacts()
     sample_carrier = 'Southwest Airlines'
     sample_airport = 'Chicago, IL: Chicago O\'Hare International'
@@ -98,6 +96,7 @@ if __name__ == '__main__':
     print("\n--- Deployment Service Mock-up ---")
     print(f"Normal Scenario Prediction (Traffic: 500): {predicted_rate_normal * 100:.2f}%")
 
-    # Example 2: Prediction that triggers Drift Alert (using a very high traffic volume)
+    # Eg 2, Prediction that triggers Drift Alert (using a very high traffic volume)
     predicted_rate_drift = get_prediction(2025, 7, sample_carrier, sample_airport, 5000)
+
     print(f"Drift Scenario Prediction (Traffic: 5000): {predicted_rate_drift * 100:.2f}%")
