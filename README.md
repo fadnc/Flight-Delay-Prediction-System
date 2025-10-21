@@ -120,5 +120,3 @@ If the incoming traffic volume exceeds a pre-defined threshold (set to $Z > 3.0$
 🚨 MLOps Alert: Data Drift Detected in 'arr_flights' (Input: 5000)
   Z-Score: 13.59. Suggests model re-evaluation or re-training.
 ```
-
-This feature demonstrates a focus on **model longevity** and **production stability**, which are critical skills for a Data Scientist role.
