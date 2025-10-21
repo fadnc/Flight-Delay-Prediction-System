@@ -1,5 +1,0 @@
-### 🎯 Data Scientist Resume Points (Top 3)
-
-1.  **Engineered and Operationalized an MLOps-Ready Pipeline:** Developed an end-to-end Flight Delay Prediction System using Python and Random Forest Regression, achieving a stable **$\mathbf{R^2}$ Score of $\mathbf{0.4146}$** and reducing prediction error to an **MAE of $\mathbf{0.0644}$** via **Time-Series Cross-Validation** and **Randomized Hyperparameter Search**.
-2.  **Implemented Advanced Feature Engineering and Model Interpretability:** Utilized **Target Encoding** to transform high-cardinality features, validating that **Airport Historical Delay** ($\mathbf{\approx 41\%}$) and **Air Traffic Volume** ($\mathbf{\approx 34\%}$) were the dominant predictive drivers, providing clear, actionable insights for stakeholders.
-3.  **Ensured Production Robustness with MLOps Monitoring:** Designed a deployment service that performs real-time **Data Drift Detection** on incoming traffic volume, successfully flagging anomalous data (e.g., **Z-score $\mathbf{> 4.35}$**) to proactively signal the need for model re-evaluation and maintenance.
